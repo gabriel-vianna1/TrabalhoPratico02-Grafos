@@ -2,8 +2,8 @@ import java.util.List;
 
 public class Solution {
 
-    private List<Integer> centros;
-    private double raio;
+    private final List<Integer> centros;
+    private final double raio;
     
     public Solution(List<Integer> centros, double raio){
         this.centros = centros;

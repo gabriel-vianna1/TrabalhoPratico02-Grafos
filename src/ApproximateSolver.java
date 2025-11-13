@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +6,7 @@ public class ApproximateSolver implements IsSolver{
     @Override
     public Solution solve(InstanceData instancia) {
 
-     List<Integer> centros = new ArrayList<Integer>();
+     List<Integer> centros = new ArrayList<>();
      
      //Inicializa o primeiro vértice do grafo como sendo o primeiro dos centros
      centros.add(0);

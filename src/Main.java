@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-        String path = "dados/pmed40.txt";
+        String path = "dados/pmed40.txt"; // Caso queira testar com outro arquivo basta mudar o número
   
         System.out.println("Inciando testes e pré-processamento (Floyd-Warshal)");
 
@@ -44,6 +44,8 @@ public class Main {
         long endTime = System.nanoTime();
 
         System.out.println("Solução encontrada com método de aproximação: ");
+
+        //System.out.println(solucaoAproximada) para ver os resultados da execução
 
         long durationInNanos = endTime - startTime;
 

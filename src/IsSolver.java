@@ -1,5 +1,4 @@
 public interface  IsSolver {
-
-    Solution solve(int k, int v, double[][] matrizDisntancia);
+    Solution solve(InstanceData instancia);
     
 }

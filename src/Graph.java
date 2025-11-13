@@ -3,21 +3,21 @@ import java.util.Arrays;
 public class Graph {
  
     private final int numVertices;
-    private final int[][] matriz;
+    private final double[][] matriz;
 
     public Graph(int v){
         this.numVertices = v;
-        this.matriz = new int[v][v];
+        this.matriz = new double[v][v];
 
         for (int i = 0; i < v; i++) {
-            Arrays.fill(this.matriz[i], Integer.MAX_VALUE);
+            Arrays.fill(this.matriz[i], Double.POSITIVE_INFINITY);
             
             this.matriz[i][i] = 0;
         }
     }
 
 //Método que vai ajustar os índices da matriz e dos arquivos que serão lidos
-public void addDirectEdge(int u, int v, int cost) {
+public void addDirectEdge(int u, int v, double cost) {
     int u_indice = u - 1; 
     int v_indice = v - 1; 
 
@@ -34,7 +34,7 @@ public void runFloydWarshall() {
                 for (int j = 0; j < numVertices; j++) { // j = vértice de destino
 
                     // Caminho i -> k -> j
-                    int indirectPath = matriz[i][k] + matriz[k][j];
+                    double indirectPath = matriz[i][k] + matriz[k][j];
 
                     // Se o caminho passando por k for mais curto
                     if (indirectPath < matriz[i][j]) {
@@ -51,7 +51,7 @@ public void runFloydWarshall() {
         System.out.println("Floyd-Warshall concluído.");
     }
    
-    public int[][] getMatrizDisntancia(){
+    public double[][] getMatrizDisntancia(){
         return this.matriz; 
     }
 

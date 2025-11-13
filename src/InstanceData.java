@@ -2,9 +2,9 @@ public class InstanceData {
 
     private final int v; // número de vértices
     private final int k; // k, para o trabalho dos k-centros
-    private final int[][] matriz; // matriz de distânicas
+    private final double[][] matriz; // matriz de distânicas
 
-    public InstanceData(int v, int k, int[][] matriz){
+    public InstanceData(int v, int k, double[][] matriz){
         this.v = v;
         this.k = k;
         this.matriz = matriz;
@@ -18,7 +18,7 @@ public class InstanceData {
         return k;
     }
 
-    public int[][] getMatriz(){
+    public double[][] getMatriz(){
         return matriz;
     }
     

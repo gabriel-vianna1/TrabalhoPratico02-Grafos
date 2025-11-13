@@ -19,10 +19,20 @@ public class InstanceReader {
 
             grafo = new Graph(numVertices);
 
-            for(int i = 0; i < numArestas; i++){
+            while(scan.hasNextInt()){
                 // Vai ler todas as arestas u -> v e guardar seus pesos
                 int u = scan.nextInt();
+
+              /*   if(!scan.hasNextInt()){
+                    break;
+                }*/
+
                 int v = scan.nextInt();
+
+                /*if(!scan.hasNextDouble()) {
+                  break; 
+                }*/
+
                 double peso = scan.nextDouble();
                 
                 grafo.addDirectEdge(u, v, peso);

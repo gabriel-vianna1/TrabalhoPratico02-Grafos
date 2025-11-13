@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-        String path = "dados/teste.txt";
+        String path = "dados/pmed40.txt";
   
         System.out.println("Inciando testes e pré-processamento (Floyd-Warshal)");
 
@@ -23,7 +23,7 @@ public class Main {
             return; // Encerra o programa se não achar o arquivo
         } catch (Exception e) {
             System.err.println("ERRO INESPERADO durante a leitura/processamento:");
-            e.getMessage();
+            e.printStackTrace();
             return;
         }
 
@@ -43,7 +43,7 @@ public class Main {
 
         long endTime = System.nanoTime();
 
-        System.out.println("Solução encontrada com método de aproximação: " + solucaoAproximada.toString());
+        System.out.println("Solução encontrada com método de aproximação: ");
 
         long durationInNanos = endTime - startTime;
 

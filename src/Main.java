@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String path = "dados/pmed36.txt";
+        String path = "dados/pmed2.txt";
 
         InstanceReader reader = new InstanceReader();
         InstanceData instancia;

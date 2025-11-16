@@ -3,64 +3,50 @@ import java.io.FileNotFoundException;
 public class Main {
 
     public static void main(String[] args) {
-        
-        String path = "dados/pmed40.txt"; // Caso queira testar com outro arquivo basta mudar o número
-  
-        System.out.println("Inciando testes e pré-processamento (Floyd-Warshal)");
+
+        String path = "dados/pmed36.txt";
 
         InstanceReader reader = new InstanceReader();
-        InstanceData dadosDaInstancia; 
+        InstanceData instancia;
 
         try {
-            // Tenta ler o arquivo, construir o grafo E rodar o Floyd-Warshall (Já roda dentro do readInstance )
-            dadosDaInstancia = reader.readInstance(path);
-            
-            System.out.println("Leitura e processamento concluídos com sucesso!");
-
+            instancia = reader.readInstance(path);
         } catch (FileNotFoundException e) {
-            System.err.println("ERRO FATAL: Arquivo não encontrado no caminho: " + path);
-            e.getMessage();
-            return; // Encerra o programa se não achar o arquivo
+            System.err.println("Arquivo não encontrado: " + path);
+            return;
         } catch (Exception e) {
-            System.err.println("ERRO INESPERADO durante a leitura/processamento:");
+            System.err.println("Erro durante leitura/processamento:");
             e.printStackTrace();
             return;
         }
 
-    
-        // B. Verifica a Matriz de Distância
-        double[][] matrix = dadosDaInstancia.getMatriz();
-
-        if (matrix == null || matrix.length != dadosDaInstancia.getV()) {
-            System.err.println("ERRO: Matriz está nula ou com tamanho incorreto!");
+        if (instancia.getMatriz() == null) {
+            System.err.println("Erro: matriz inválida.");
+            return;
         }
 
-        ApproximateSolver as = new ApproximateSolver();
+        ApproximateSolver approx = new ApproximateSolver();
+        long t1 = System.nanoTime();
+        Solution solAprox = approx.solve(instancia);
+        long t2 = System.nanoTime();
 
-        long startTime = System.nanoTime();
+        double aproxMs = (t2 - t1) / 1_000_000.0;
+        double aproxSec = (t2 - t1) / 1_000_000_000.0;
 
-        Solution solucaoAproximada = as.solve(dadosDaInstancia);
+        System.out.println("Método aproximado:");
+        System.out.println(solAprox);
+        System.out.println(String.format("Tempo: %.4f ms (%.6f s)", aproxMs, aproxSec));
 
-        long endTime = System.nanoTime();
+        ExactSolver exact = new ExactSolver();
+        long t3 = System.nanoTime();
+        Solution solExata = exact.solve(instancia);
+        long t4 = System.nanoTime();
 
-        System.out.println("Solução encontrada com método de aproximação: ");
+        double exactMs = (t4 - t3) / 1_000_000.0;
+        double exactSec = (t4 - t3) / 1_000_000_000.0;
 
-        //System.out.println(solucaoAproximada) para ver os resultados da execução
-
-        long durationInNanos = endTime - startTime;
-
-        double durationInMilliseconds = durationInNanos / 1_000_000.0;
-        double durationInSeconds = durationInNanos / 1_000_000_000.0;
-
-        System.out.println(String.format(
-    "Tempo de execução (Aproximado): %.4f ms (ou %.6f segundos)", 
-    durationInMilliseconds, 
-    durationInSeconds
-    ));
-        
-        
-        
+        System.out.println("\nMétodo exato (força bruta):");
+        System.out.println(solExata);
+        System.out.println(String.format("Tempo: %.4f ms (%.6f s)", exactMs, exactSec));
     }
-
-    
 }
